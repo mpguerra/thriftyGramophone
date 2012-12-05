@@ -5,7 +5,7 @@ if (GTEST_FOUND)
   include_directories(${GTEST_INCLUDE_DIRS})
 
   add_executable(${PROJECT_TEST_NAME} "devices_test.cc")
-  target_link_libraries(${PROJECT_TEST_NAME} tgramophone ${GTEST_BOTH_LIBRARIES} pthread)
+  target_link_libraries(${PROJECT_TEST_NAME} tgramophone ${GTEST_BOTH_LIBRARIES} pthread ${THRIFT_LIBRARY})
 
   add_test(${PROJECT_TEST_NAME} ${PROJECT_TEST_NAME})
 endif()
