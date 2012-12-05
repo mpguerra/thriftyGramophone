@@ -1,4 +1,4 @@
 project(thriftygramophone)
 
-add_executable(thriftygramophone src/main.c)
+add_subdirectory(src)
 
