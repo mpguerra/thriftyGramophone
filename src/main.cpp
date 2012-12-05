@@ -1,6 +1,14 @@
 #include <stdio.h>
+#include "player.hpp"
+#include "service.hpp"
 
-int main(int argc, char **argv) {
-  printf("blah you\n");
-  return 0;
+using namespace ThriftyGramophone;
+using namespace std;
+
+int main(int argc, char **argv)
+{
+  ThriftyGramophoneService service;
+  Player player;
+  
+  service.start(player);
 }
