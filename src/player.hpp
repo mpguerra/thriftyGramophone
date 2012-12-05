@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <string>
+#include "devices.hpp"
 
 namespace ThriftyGramophone {
 
@@ -25,9 +26,10 @@ namespace ThriftyGramophone {
   class Player {
   private:
     Status player_status;
+    DeviceRegistry registry;
 
   public:
-    int play(std::string URI);
+    int play(std::string uri);
     Status status();
 
     /**

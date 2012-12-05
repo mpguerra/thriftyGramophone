@@ -2,8 +2,12 @@
 
 using namespace ThriftyGramophone;
 
-int Player::play(std::string URI) {
-  return 0;
+int Player::play(std::string uri) {
+  Device* d = registry.get_device_for_URI(uri);
+  if (d == NULL) {
+    return -1;
+  }
+  return d->play(uri);
 }
 
 Status Player::status() {
