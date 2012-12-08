@@ -7,8 +7,8 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-  ThriftyGramophoneService service;
   Player player;
+  ThriftyGramophoneService service(player);
   
-  service.start(player);
+  service.start();
 }

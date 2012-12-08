@@ -28,8 +28,18 @@ namespace ThriftyGramophone{
 
   class ThriftyGramophoneService
   {
+  private:
+    boost::shared_ptr<apache::thrift::protocol::TProtocolFactory> m_protocolFactory;
+    boost::shared_ptr<ThriftyGramophoneHandler> m_handler;
+    boost::shared_ptr<apache::thrift::TProcessor> m_processor;
+    boost::shared_ptr<apache::thrift::transport::TServerTransport> m_serverTransport;
+    boost::shared_ptr<apache::thrift::transport::TTransportFactory> m_transportFactory;
+
+    boost::shared_ptr<apache::thrift::server::TSimpleServer> m_server;
+
   public:
-    void start(Player& player);
+    ThriftyGramophoneService(Player& player);
+    void start();
     void stop();
   };
 }
