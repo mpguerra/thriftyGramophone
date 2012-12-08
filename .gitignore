@@ -1,0 +1,12 @@
+Makefile
+*~
+*.so
+*.cmake
+CMakeCache.txt
+.kdev4
+gen-cpp
+CMakeFiles
+Testing
+build
+src/thriftygramophone
+test/thriftygramophone_test
