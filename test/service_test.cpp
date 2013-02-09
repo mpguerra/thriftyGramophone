@@ -1,6 +1,5 @@
 #include <boost/bind.hpp>
 #include <boost/thread/thread.hpp>
-#include <boost/shared_ptr.hpp>
 #include <netinet/in.h>
 #include <thrift/protocol/TBinaryProtocol.h>
 #include <thrift/transport/TSocket.h>
@@ -30,11 +29,14 @@ protected:
   {
     assert(!m_thread);
     m_thread = new boost::thread(boost::bind(&ThriftyGramophoneServiceTest::startService, this));
+
+    // m_service->
   }
 
-  //clean 
+  // clean
   virtual void TearDown()
   {
+      // unlock
     if(m_thread != NULL)
     {
       m_service->stop();
@@ -45,9 +47,10 @@ protected:
   }
 
 private:
+  // Service thread
   boost::thread* m_thread;
   ThriftyGramophone::ThriftyGramophoneService* m_service;
-  //Start service in a separate thread
+  // Start service in a separate thread
   void startService()
   {
     m_service->start();
@@ -56,10 +59,15 @@ private:
   
 TEST_F(ThriftyGramophoneServiceTest, CallingPlayOnServiceCallsPlayOnThePlayer)
 {
+  // wait for service to be started
+  sleep(5);
   boost::shared_ptr<apache::thrift::transport::TTransport> socket(new apache::thrift::transport::TSocket("localhost", 9090));
   boost::shared_ptr<apache::thrift::transport::TTransport> transport(new apache::thrift::transport::TBufferedTransport(socket));
   boost::shared_ptr<apache::thrift::protocol::TProtocol> protocol(new apache::thrift::protocol::TBinaryProtocol(transport));
   ThriftyGramophone::ThriftyGramophoneClient client(protocol);
 
-  client.play("blah");
+  socket->open();
+  client.play("file:///home/pili/Test.mp3");
+
+  socket->close();
 }

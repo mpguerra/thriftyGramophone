@@ -3,6 +3,12 @@ project(thriftygramophone)
 
 enable_testing()
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GST gstreamer-1.0)
+#pkg_check_modules(GSTAUDIO gstreamer-audio-1.0)
+
+include_directories(${GST_INCLUDE_DIRS} ${GSTAUDIO_INCLUDE_DIRS})
+link_directories(${GST_LIBRARY_DIRS} ${GSTAUDIO_LIBRARY_DIRS})
 
 set(THRIFT_HEADER thrift/Thrift.h)
 find_path(THRIFT_INCLUDE_DIR ${THRIFT_HEADER})

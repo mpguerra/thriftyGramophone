@@ -9,7 +9,7 @@ namespace ThriftyGramophone {
   enum State {
     PLAYING,
     PAUSED,
-    STOPPED,
+    STOPPED
   };
 
   class Status {
@@ -24,7 +24,7 @@ namespace ThriftyGramophone {
   };
 
   class Player {
-  private:
+  protected:
     Status player_status;
     DeviceRegistry registry;
 

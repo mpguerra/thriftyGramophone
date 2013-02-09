@@ -28,6 +28,6 @@ else(THRIFT_BIN)
   message(SEND_ERROR "Cannot find thrift in your path.")
 endif(THRIFT_BIN)
 
-add_library(tgramophone SHARED player.cpp devices.cpp service.cpp ${THRIFT_GEN_FILES})
+add_library(tgramophone SHARED player.cpp devices.cpp service.cpp fileplayer.cpp ${THRIFT_GEN_FILES})
 add_executable(thriftygramophone main.cpp)
-target_link_libraries(thriftygramophone tgramophone ${THRIFT_LIBRARY})
+target_link_libraries(thriftygramophone tgramophone ${THRIFT_LIBRARY} ${GST_LIBRARIES} ${GSTAUDIO_LIBRARIES})

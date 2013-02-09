@@ -10,3 +10,6 @@ Testing
 build
 src/thriftygramophone
 test/thriftygramophone_test
+*.user
+*.autosave
+*.cbp
